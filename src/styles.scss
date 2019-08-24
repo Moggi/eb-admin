@@ -1,1 +1,144 @@
+@import 'themes';
+
+@import '~@nebular/theme/styles/globals';
+@import '~@nebular/auth/styles/globals'; // or @import '~@nebular/auth/styles/{theme-name}';
+// @import '~@nebular/auth/styles/themes/corporate';
+
+
+@include nb-install() {
+    @include nb-theme-global();
+    @include nb-auth-global();
+};
+// https://akveo.github.io/nebular/docs/themes/corporate
 /* You can add global styles to this file, and also import other style files */
+html {
+    font-size: 14px;
+}
+
+.nb-theme-corporate {
+
+    .row {
+        margin: 0;
+        width: 100%;
+    }
+    
+    .col {
+        flex-grow: 1;
+        padding: 0;
+        margin: 0 10px;
+    }
+    
+    .col-auto {
+        flex-grow: 0;
+    }
+
+    .margin-bottom {
+        margin-bottom: 15px !important;
+    }
+    
+    .margin-left {
+        margin-left: 15px !important;
+    }
+    
+    .margin-right {
+        margin-right: 15px !important;
+    }
+    
+    .margin-top {
+        margin-top: 15px !important;
+    }
+    
+    .align-self-center {
+        align-self: center;
+    }
+
+    // Remove underline at header anchor
+    a.icon-container,
+    a.icon-container:active,
+    a.icon-container:hover,
+    a.icon-container:focus {
+        // display: block;
+        text-decoration-line: none !important;
+    }
+
+    .menu-sidebar.compacted .scrollable{
+        padding-left: 3px;
+        padding-right: 0px;
+    }
+
+    nb-menu {
+        // Left sidebar icons
+        .menu-item .menu-icon.icon {
+            font-size: 1.8rem;
+            width: 2rem;
+            margin: 0 0.5rem 0 0.15rem;
+        }
+
+        // Remove unnecessary space on sidebar anchor
+        .menu-item a {
+            padding: 0.375rem 0.75rem;
+        }
+
+        // Left sidebar sub-itens
+        .menu-item > .menu-items > .menu-item a {
+            padding: 0.25rem 1rem;
+        }
+
+        // line-through every anchor that dont have href
+        span.menu-title {
+            text-decoration-line: line-through !important;
+        }
+        a[href] span.menu-title {
+            text-decoration-line: none !important;
+        }
+
+        // text to the center
+        [text-center] {
+            text-align: center;
+        }
+    }
+    
+    // full witdh input/button
+    [fullwidth] {
+        width: 100%;
+    }
+
+    // // style nb-card with separation
+    // .nb-theme-corporate nb-card-header {
+    //     border-bottom: 1px solid nb-theme(sidebar-bg);
+    // }
+
+    h1,h2,h3,h4,h5,h6 {
+        margin: 1.33rem 0;
+    }
+    
+    table {
+
+        // Action buttons on Tables
+        nb-actions nb-action {   
+            i.control-icon {
+                font-weight: bold;
+            }
+
+            i.control-icon:hover {
+                color: nb-theme(actions-fg-hover);
+            }
+        }
+    }
+
+    // Add padding on bootstrap default
+    .table-sm th, .table-sm td {
+        padding: 0.3rem 0.6rem;
+        vertical-align: middle;
+    }
+
+    // Not too round
+    [shape="little-round"] {
+        border-radius: 0.375rem !important;
+    }
+
+    // Input medium size equals button small height
+    [height="md"] {
+        padding: 0.55rem 1.125rem !important;
+    }
+}

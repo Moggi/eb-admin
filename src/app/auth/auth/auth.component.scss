@@ -1,0 +1,49 @@
+nb-layout-column {
+    background: #ededed;
+    padding: 2.5rem !important;
+}
+
+nb-card {
+    margin: 0;
+    height: calc(100vh - 2 * 2.5rem);
+}
+
+@media (max-width: 767.98px) {
+    nb-layout-column {
+        padding: 0 !important;
+    }
+
+    nb-card {
+        height: 100vh !important;
+    }
+}
+
+div[center] {
+    width: 100%;
+    margin: auto;
+    max-width: 35rem;
+}
+
+nb-card-header {
+    padding: 1.25rem;
+    // border-top-left-radius: .5rem;
+    // border-top-right-radius: .5rem;
+    // color: #fff;
+    // // font-family: Exo;
+    // font-size: 1.125rem;
+    // font-weight: 500;
+}
+
+nav a {
+    color: #333;
+    text-decoration: none;
+    padding-right: 10px;
+
+    i {
+        font-weight: bold;
+    }
+}
+
+.navigation {
+    vertical-align: middle;
+}

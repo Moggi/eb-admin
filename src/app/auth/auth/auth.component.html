@@ -1,0 +1,21 @@
+<nb-layout>
+    <nb-layout-column pad>
+        <nb-card>
+            <nb-card-header>
+                <nav class="navigation">
+                    <a href="#" (click)="back()" class="link" aria-label="Back">
+                        <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                    </a>
+                    <span>EB Administração</span>
+                </nav>
+            </nb-card-header>
+            <nb-card-body>
+                <!-- <nb-auth-block> -->
+                <div center>
+                    <router-outlet></router-outlet>
+                </div>
+                <!-- </nb-auth-block> -->
+            </nb-card-body>
+        </nb-card>
+    </nb-layout-column>
+</nb-layout>

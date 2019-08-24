@@ -1,0 +1,100 @@
+
+<nb-card>
+    <nb-card-header>Clientes</nb-card-header>
+    <nb-card-body>
+
+        <div class="row margin-bottom">
+            <div class="form-inline">
+                <div class="row">
+                    <div class="col col-auto">
+                        <label class="label" for="client-name">Nome de usuário / Nome / Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col margin-right">
+                        <input nbInput
+                            fullWidth
+                            fieldSize="medium"
+                            id="client-name"
+                            name="name"
+                            type="search"
+                            [(ngModel)]="searchUser"
+                            placeholder="Ex: Ana"
+                        >
+                    </div>
+                    <div class="col col-auto">
+                        <button nbButton
+                            size="medium"
+                            status="primary"
+                            (click)="onSearch()"
+                            nbSpinnerStatus="primary"
+                            [nbSpinner]="isSearching"
+                            [disabled]="isSearching"
+                        >Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <!-- <div class="row margin-bottom margin-top">
+
+            <span>Configs</span>
+        </div> -->
+
+    <!-- </nb-card-body>
+</nb-card>
+
+<nb-card>
+    <nb-card-header>Clients</nb-card-header>
+    <nb-card-body> -->
+        <div class="row margin-top">
+            <div class="table-responsive">
+                <table class="table table-striped table-borderless table-hover table-sm smart-table"
+                    nbSpinnerStatus="primary"
+                    [nbSpinner]="isSearching">
+                    <thead>
+                        <tr>
+                            <th>Ações</th>
+                            <th>Nome de usuário</th>
+                            <th>Nome completo</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let client of clients">
+                            <td>
+                                <nb-actions size="small">
+                                    <nb-action
+                                        icon="person"
+                                        title="Editar"
+                                        [href]="'#/pages/clientes/' + client.username"
+                                    ></nb-action>
+                                    <nb-action
+                                        icon="file-text"
+                                        title="Relatório"
+                                        [href]="'#/pages/relatorios/' + client.username"
+                                    ></nb-action>
+                                </nb-actions>
+                            </td>
+                            <td>{{ client.username }}</td>
+                            <td>{{ client.get_full_name() }}</td>
+                            <td>{{ client.get_email() }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row justify-content-center">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item" *ngFor="let p of pagination">
+                            <span class="page-link">{{ p.id }}</span>
+                        </li>
+                        <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
