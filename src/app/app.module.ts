@@ -33,7 +33,7 @@ import { AuthJWTInterceptor } from './auth/services/auth-jwt-interceptor';
     NbMenuModule.forRoot(),
     NbLayoutModule,
     NbEvaIconsModule,
-    NbToastrModule.forRoot(),
+    NbToastrModule.forRoot({duration: 3*1000}),
   ],
   providers: [
     AuthService,

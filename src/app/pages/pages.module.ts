@@ -25,13 +25,17 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ClientsComponent } from './clients/clients/clients.component';
-import { ClientNewComponent } from './clients/client-new/client-new.component';
-import { ClientDetailComponent } from './clients/client-detail/client-detail.component';
 import { ResetarSenhaComponent } from './resetar-senha/resetar-senha.component';
+import { ProfessionalsComponent } from './professionals/professionals/professionals.component';
 // import { DashboardModule } from './dashboard/dashboard.module';
 // import { ECommerceModule } from './e-commerce/e-commerce.module';
 // import { ThemeModule } from '../@theme/theme.module';
 // import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { ServicesComponent } from './services/services/services.component';
+import { SimpleCheckboxRenderComponent } from '../components/smart-table/simple-checkbox-render/simple-checkbox-render.component';
+import { SimpleColorRenderComponent } from '../components/smart-table/simple-color-render/simple-color-render.component';
+import { SimpleColorEditorComponent } from '../components/smart-table/simple-color-editor/simple-color-editor.component';
 
 const PAGES_COMPONENTS = [
     PagesComponent,
@@ -39,9 +43,9 @@ const PAGES_COMPONENTS = [
     NotFoundComponent,
     RelatoriosComponent,
     ClientsComponent,
-    ClientNewComponent,
-    ClientDetailComponent,
+    ProfessionalsComponent,
     ResetarSenhaComponent,
+    ServicesComponent,
 ];
 
 @NgModule({
@@ -65,6 +69,12 @@ const PAGES_COMPONENTS = [
         NbSpinnerModule,
         NbToastrModule,
         NbDatepickerModule,
+        Ng2SmartTableModule,
+    ],
+    entryComponents: [
+        SimpleCheckboxRenderComponent,
+        SimpleColorRenderComponent,
+        SimpleColorEditorComponent,
     ],
     declarations: [
         ...PAGES_COMPONENTS,

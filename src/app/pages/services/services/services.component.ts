@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from 'src/app/services/user.service';
-import { User } from 'src/app/@models/user.model';
 import { NbToastrService } from '@nebular/theme';
+import { Service } from 'src/app/@models/service.model';
+import { ServicesService } from 'src/app/services/service.service';
+import { SimpleCheckboxRenderComponent } from 'src/app/components/smart-table/simple-checkbox-render/simple-checkbox-render.component';
+import { SimpleColorRenderComponent } from 'src/app/components/smart-table/simple-color-render/simple-color-render.component';
+import { SimpleColorEditorComponent } from 'src/app/components/smart-table/simple-color-editor/simple-color-editor.component';
+
 
 @Component({
-    selector: 'app-clients',
-    templateUrl: './clients.component.html',
-    styleUrls: ['./clients.component.scss']
+  selector: 'app-services',
+  templateUrl: './services.component.html',
+  styleUrls: ['./services.component.scss']
 })
-export class ClientsComponent implements OnInit {
+export class ServicesComponent implements OnInit {
 
-  searchUser: string;
   isUpdatingData: boolean;
   pagination: {id,url}[];
 
@@ -26,31 +29,55 @@ export class ClientsComponent implements OnInit {
       confirmDelete: true,
     },
     columns: {
-      username: {
-        title: 'Nome de usuário'
+      // id: {
+      //   title: 'ID',
+      //   editable: false,
+      // },
+      name: {
+        title: 'Nome',
       },
-      first_name: {
-        title: 'Primeiro nome'
+      avg_price: {
+        title: 'Valor médio',
       },
-      last_name: {
-        title: 'Último nome'
+      avg_time: {
+        title: 'Tempo médio',
       },
-      email: {
-        title: 'Email'
+      is_type: {
+        title: 'É tipo',
+        type: 'custom',
+        renderComponent: SimpleCheckboxRenderComponent,
+        filter: {
+          type: 'checkbox',
+          config: {
+            true: 'true',
+            false: 'false',
+            resetText: 'Limpar',
+          },
+        },
+        editor: {
+          type: 'checkbox'
+        },
       },
-      phone: {
-        title: 'Telefone'
+      type_color: {
+        title: 'Cor do tipo',
+        type: 'custom',
+        renderComponent: SimpleColorRenderComponent,
+        filter: false,
+        editor: {
+          type: 'custom',
+          component: SimpleColorEditorComponent,
+        }
       },
-      cellphone: {
-        title: 'Celular'
+      from_type: {
+        title: 'Do tipo',
       },
     }
   };
 
-  data: User[] = [];
+  data = [];
 
   constructor(
-    private service: UsersService,
+    private service: ServicesService,
     private toastrService: NbToastrService,
   ) {
     // this.pagination = [
@@ -65,19 +92,19 @@ export class ClientsComponent implements OnInit {
   createConfirm(event:{newData,source,confirm}) {
     this.service.add(event.newData).subscribe(
       response => {
-        var new_user = new User(response);
+        var new_user = new Service(response);
         event.confirm.resolve(new_user);
       },
       err => {
         // console.log('err');
         // console.log(err);
         this.toastrService.show(
-            'Verifique os dados',
-            'Erro. Operação não concluida.',
-            {
-                duration: 10*1000,
-                status: 'warning',
-            }
+          'Verifique os dados',
+          'Erro. Operação não concluida.',
+          {
+            duration: 10*1000,
+            status: 'warning',
+          }
         );
         event.confirm.reject();
       }
@@ -85,7 +112,7 @@ export class ClientsComponent implements OnInit {
   }
 
   deleteConfirm(event:{data,source,confirm}) {
-    var username: string = prompt('Para confirmar a DELEÇÃO, digite o nome de usuário a ser deletado');
+    var username: string = prompt('Para confirmar a DELEÇÃO, digite o nome do serviço a ser deletado');
     if(username.toLowerCase() != event.data.username.toLowerCase()) {
       event.confirm.reject();
       return;
@@ -115,7 +142,7 @@ export class ClientsComponent implements OnInit {
     this.service.update(event.data.id, event.newData).subscribe(
       response => {
         this.isUpdatingData = false;
-        event.confirm.resolve(new User(response));
+        event.confirm.resolve(new Service(response));
       },
       err => {
         // console.log('err');
@@ -133,34 +160,6 @@ export class ClientsComponent implements OnInit {
       }
     );
   }
-
-  onSearch() {
-    this.isUpdatingData = true;
-    if( !this.searchUser )
-      this.searchUser = '';
-
-    this.service.search(this.searchUser).subscribe(
-      clients => {
-        this.isUpdatingData = false;
-        this.data = [];
-        for(const i in clients['results']) {
-          var user = new User(clients['results'][i]);
-          this.data.push(user);
-        }
-      },
-      err => {
-        this.isUpdatingData = false;
-        this.toastrService.show(
-          'Verifique a internet e se o erro persistir, chame o suporte!',
-          'Erro de conexão com o servidor',
-          {
-            duration: 10*1000,
-            status: 'warning',
-          }
-        );
-      }
-    );
-  }
   
   list() {
     this.isUpdatingData = true;
@@ -170,7 +169,7 @@ export class ClientsComponent implements OnInit {
         this.isUpdatingData = false;
         this.data = [];
         for(const i in clients['results']) {
-          var user = new User(clients['results'][i]);
+          var user = new Service(clients['results'][i]);
           this.data.push(user);
         }
       },

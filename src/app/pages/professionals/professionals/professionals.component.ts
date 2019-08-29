@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from 'src/app/services/user.service';
-import { User } from 'src/app/@models/user.model';
 import { NbToastrService } from '@nebular/theme';
+import { ProfessionalsService } from 'src/app/services/professional.service';
+import { Professional } from 'src/app/@models/professional.model';
+import { SimpleCheckboxRenderComponent } from 'src/app/components/smart-table/simple-checkbox-render/simple-checkbox-render.component';
+
 
 @Component({
-    selector: 'app-clients',
-    templateUrl: './clients.component.html',
-    styleUrls: ['./clients.component.scss']
+  selector: 'app-professionals',
+  templateUrl: './professionals.component.html',
+  styleUrls: ['./professionals.component.scss']
 })
-export class ClientsComponent implements OnInit {
+export class ProfessionalsComponent implements OnInit {
 
   searchUser: string;
   isUpdatingData: boolean;
@@ -27,30 +29,53 @@ export class ClientsComponent implements OnInit {
     },
     columns: {
       username: {
-        title: 'Nome de usuário'
+        title: 'Nome de Usuário',
+        editable: false,
       },
-      first_name: {
-        title: 'Primeiro nome'
+      // id: {
+      //   title: 'ID de profissional',
+      //   editable: false,
+      // },
+      services: {
+        title: 'Serviços',
+        // type: 'custom',
+        // renderComponent: CustomCheckboxRenderComponent,
+        // filter: {
+        //   type: 'list',
+        //   // config: {
+        //   //   true: 'true',
+        //   //   false: 'false',
+        //   //   resetText: 'Limpar',
+        //   // },
+        // },
+        editor: {
+          type: 'list'
+        },
       },
-      last_name: {
-        title: 'Último nome'
-      },
-      email: {
-        title: 'Email'
-      },
-      phone: {
-        title: 'Telefone'
-      },
-      cellphone: {
-        title: 'Celular'
+      is_available: {
+        title: 'Disponível',
+        type: 'custom',
+        renderComponent: SimpleCheckboxRenderComponent,
+        filter: {
+          type: 'checkbox',
+          config: {
+            true: 'true',
+            false: 'false',
+            resetText: 'Limpar',
+          },
+        },
+        editor: {
+          type: 'checkbox'
+        },
+        filterFunction: this.isAvailableFilter,
       },
     }
   };
 
-  data: User[] = [];
+  data: Professional[] = [];
 
   constructor(
-    private service: UsersService,
+    private service: ProfessionalsService,
     private toastrService: NbToastrService,
   ) {
     // this.pagination = [
@@ -65,19 +90,19 @@ export class ClientsComponent implements OnInit {
   createConfirm(event:{newData,source,confirm}) {
     this.service.add(event.newData).subscribe(
       response => {
-        var new_user = new User(response);
+        var new_user = new Professional(response);
         event.confirm.resolve(new_user);
       },
       err => {
         // console.log('err');
         // console.log(err);
         this.toastrService.show(
-            'Verifique os dados',
-            'Erro. Operação não concluida.',
-            {
-                duration: 10*1000,
-                status: 'warning',
-            }
+          'Verifique os dados',
+          'Erro. Operação não concluida.',
+          {
+            duration: 10*1000,
+            status: 'warning',
+          }
         );
         event.confirm.reject();
       }
@@ -115,7 +140,7 @@ export class ClientsComponent implements OnInit {
     this.service.update(event.data.id, event.newData).subscribe(
       response => {
         this.isUpdatingData = false;
-        event.confirm.resolve(new User(response));
+        event.confirm.resolve(new Professional(response));
       },
       err => {
         // console.log('err');
@@ -133,18 +158,16 @@ export class ClientsComponent implements OnInit {
       }
     );
   }
-
-  onSearch() {
+  
+  list() {
     this.isUpdatingData = true;
-    if( !this.searchUser )
-      this.searchUser = '';
 
-    this.service.search(this.searchUser).subscribe(
+    this.service.list().subscribe(
       clients => {
         this.isUpdatingData = false;
         this.data = [];
         for(const i in clients['results']) {
-          var user = new User(clients['results'][i]);
+          var user = new Professional(clients['results'][i]);
           this.data.push(user);
         }
       },
@@ -161,16 +184,22 @@ export class ClientsComponent implements OnInit {
       }
     );
   }
-  
-  list() {
-    this.isUpdatingData = true;
 
-    this.service.list().subscribe(
+  isAvailableFilter(cell: any, search: string): boolean {
+    return cell == (search == 'true'?true:false);
+  }
+
+  onSearch() {
+    this.isUpdatingData = true;
+    if( !this.searchUser )
+      this.searchUser = '';
+
+    this.service.search(this.searchUser).subscribe(
       clients => {
         this.isUpdatingData = false;
         this.data = [];
         for(const i in clients['results']) {
-          var user = new User(clients['results'][i]);
+          var user = new Professional(clients['results'][i]);
           this.data.push(user);
         }
       },

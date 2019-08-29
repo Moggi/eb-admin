@@ -7,7 +7,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-## [0.1.0] - 2019-08-28
+## [0.2.0] - 2019-08-28
+
+### Added
+
+- Working CRUD for client, professional and services
+
+## [0.1.0] - 2019-08-24
 
 ### Added
 

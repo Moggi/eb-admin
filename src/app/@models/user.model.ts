@@ -14,11 +14,11 @@ export class User {
     constructor(obj?: any) {
         this.id = obj && obj.id || null;
         this.username = obj && obj.username || null;
-        this.email = obj && obj.email || null;
-        this.first_name = obj && obj.first_name || null;
-        this.last_name = obj && obj.last_name || null;
-        this.phone = obj && obj.phone || null;
-        this.cellphone = obj && obj.cellphone || null;
+        this.email = obj && obj.email || '';
+        this.first_name = obj && obj.first_name || '';
+        this.last_name = obj && obj.last_name || '';
+        this.phone = obj && obj.phone || '';
+        this.cellphone = obj && obj.cellphone || '';
     }
     
     public get_full_name() {
@@ -31,5 +31,9 @@ export class User {
         if(!this.email)
             return '<no email>';
         return `${this.email}`;
+    }
+
+    toString(){
+        return this.username;
     }
 }

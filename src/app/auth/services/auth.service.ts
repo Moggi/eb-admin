@@ -14,6 +14,7 @@ const helper = new JwtHelperService();
 export class AuthService {
 
     protected basepath = 'http://localhost:8000/api';
+    protected defaultTimeOut = 30 * 1000;
 
     accessToken: string = null;
     
@@ -46,7 +47,7 @@ export class AuthService {
 
         return this.http.post(url, body)
         .pipe(
-            timeout(1 * 60 * 1000),
+            timeout(this.defaultTimeOut),
             map( response => {
                 if(response['refresh'] && response['access']) {
                     localStorage.setItem('accessToken', response['access'])
@@ -89,7 +90,7 @@ export class AuthService {
 
         return this.http.post(url, {'refresh': refreshToken}, {})
         .pipe(
-            timeout(60 * 1000),
+            timeout(this.defaultTimeOut),
             map( response => {
                 // console.log(response);
                 if(response['access']) {

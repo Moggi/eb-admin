@@ -1,0 +1,10 @@
+<input #color
+  class="form-control short-input"
+  type="color"
+  [name]="cell.getId()"
+  [disabled]="!cell.isEditable()"
+  [placeholder]="cell.getTitle()"
+  [defaultValue]="cell.getValue()"
+  (blur)="updateValue()"
+>
+<div [hidden]="true" [innerHTML]="cell.getValue()" #htmlValue></div>

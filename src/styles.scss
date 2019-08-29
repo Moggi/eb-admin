@@ -124,6 +124,19 @@ html {
                 color: nb-theme(actions-fg-hover);
             }
         }
+        a.ng2-smart-action {
+            font-size: 0.9rem !important;
+        }
+        a.ng2-smart-action:not(:last-child) {
+            padding-right: 0.5rem !important;
+        }
+        a.ng2-smart-action:last-child {
+            padding-left: 0.5rem !important;
+        }
+
+        table-cell-edit-mode {
+            margin: -2px -5px !important;
+        }
     }
 
     // Add padding on bootstrap default

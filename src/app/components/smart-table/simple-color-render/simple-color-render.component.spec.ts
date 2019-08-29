@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ClientDetailComponent } from './client-detail.component';
+import { SimpleColorRenderComponent } from './simple-color-render.component';
 
-describe('ClientDetailComponent', () => {
-  let component: ClientDetailComponent;
-  let fixture: ComponentFixture<ClientDetailComponent>;
+describe('SimpleColorRenderComponent', () => {
+  let component: SimpleColorRenderComponent;
+  let fixture: ComponentFixture<SimpleColorRenderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ClientDetailComponent ]
+      declarations: [ SimpleColorRenderComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ClientDetailComponent);
+    fixture = TestBed.createComponent(SimpleColorRenderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

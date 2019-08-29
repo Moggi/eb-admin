@@ -6,8 +6,8 @@ import { RelatoriosComponent } from './relatorios/relatorios.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { ClientsComponent } from './clients/clients/clients.component';
-import { ClientNewComponent } from './clients/client-new/client-new.component';
-import { ClientDetailComponent } from './clients/client-detail/client-detail.component';
+import { ProfessionalsComponent } from './professionals/professionals/professionals.component';
+import { ServicesComponent } from './services/services/services.component';
 // import { ResetarSenhaComponent } from './resetar-senha/resetar-senha.component';
 // import { DashboardComponent } from './dashboard/dashboard.component';
 // import { ECommerceComponent } from './e-commerce/e-commerce.component';
@@ -30,11 +30,11 @@ const routes: Routes = [{
         path: 'clientes',
         component: ClientsComponent,
     }, {
-        path: 'clientes/:username',
-        component: ClientDetailComponent,
+        path: 'profissionais',
+        component: ProfessionalsComponent,
     }, {
-        path: 'clientes/add',
-        component: ClientNewComponent,
+        path: 'servicos',
+        component: ServicesComponent,
     }, {
     //     path: 'senha',
     //     component: ResetarSenhaComponent,

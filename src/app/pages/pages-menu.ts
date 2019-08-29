@@ -20,7 +20,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
             },
             {
                 title: 'Profissionais',
-                // link: '/pages/usuários',
+                link: '/pages/profissionais',
             },
             {
                 title: 'Administração',
@@ -38,7 +38,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
             },
             {
                 title: 'Serviços',
-                // link: '/pages/livros',
+                link: '/pages/servicos',
             },
         ],
     },
@@ -64,11 +64,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
         icon: 'lock',
         children: [
             {
-                title: 'Login',
+                title: 'Entrar',
                 link: '/auth/login',
             },
             {
-                title: 'Logout',
+                title: 'Desconectar',
                 link: '/auth/logout',
             },
         ],
