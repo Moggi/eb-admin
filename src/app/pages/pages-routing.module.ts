@@ -2,7 +2,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages/pages.component';
-import { RelatoriosComponent } from './relatorios/relatorios.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { ClientsComponent } from './clients/clients/clients.component';
@@ -22,10 +21,10 @@ const routes: Routes = [{
         component: HomeComponent,
     }, {
         path: 'relatorios',
-        component: RelatoriosComponent,
+        // component: RelatoriosComponent,
     }, {
         path: 'relatorios/:username',
-        component: RelatoriosComponent,
+        // component: RelatoriosComponent,
     }, {
         path: 'clientes',
         component: ClientsComponent,
